@@ -1,0 +1,12 @@
+<div class="login-page">
+  <div class="form">
+    <form class="login-form">
+      <div *ngIf="error">
+        {{ error }}
+      </div>
+      <input type="text" [(ngModel)]='username' name="username" placeholder="username"/>
+      <input type="password" [(ngModel)]='password' name="password" placeholder="password"/>
+      <button type="button" (click)="submitFormLogin()">login</button>
+    </form>
+  </div>
+</div>

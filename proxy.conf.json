@@ -1,0 +1,22 @@
+{  
+    "/api/auth": {
+       "target": "http://desktop-t11a7du:8080/v1/rest/auth",
+       "secure": false,  
+       "logLevel": "debug"  
+    },
+    "/api/sit": {
+        "target": "http://desktop-t11a7du:8080/v1/rest/sit",
+        "secure": false,  
+        "logLevel": "debug"  
+    },
+    "/api/customer/*": {
+        "target": "http://desktop-t11a7du:8080/v1/rest/customer/518208586000106003",
+        "secure": false,  
+        "logLevel": "debug"
+    },
+    "/api/customer": {
+        "target": "http://desktop-t11a7du:8080/v1/rest/customer?cols=*&page_no=1&page_size=10",
+        "secure": false,  
+        "logLevel": "debug"  
+    }
+}
