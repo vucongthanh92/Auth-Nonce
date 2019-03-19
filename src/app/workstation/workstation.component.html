@@ -1,3 +1,9 @@
-<p>
-  workstation works!
-</p>
+<h2>List Customers</h2>
+
+<div *ngIf="customers && customers.length > 0">
+  <ul *ngFor="let customer of customers; let i = index">
+    <a (click)="gotoCustomer(customer.sid)">
+      <li>{{ i + 1 }} - {{ customer.sid }}</li>
+    </a>
+  </ul>
+</div>

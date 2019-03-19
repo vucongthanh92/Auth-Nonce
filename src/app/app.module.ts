@@ -6,12 +6,14 @@ import { LoginComponent } from './login/login.component';
 import { FormsModule } from '@angular/forms';
 import { WorkstationComponent } from './workstation/workstation.component';
 import { RoutingModule } from './routing.module';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    WorkstationComponent
+    WorkstationComponent,
+    CustomerComponent
   ],
   imports: [
     BrowserModule,

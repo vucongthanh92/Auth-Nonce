@@ -98,14 +98,14 @@ export class ApiService {
 
   getCustomer(cols: string = '*', pageNo: string = '1', pageSize: string = '10'): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams()
-      .set('cols', cols)
       .set('page_no', pageNo)
+      .set('cols', cols)
       .set('page_size', pageSize);
     const headersRequest = new HttpHeaders()
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
 
-    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customer', bodyRequest, {
+    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customers', bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
       responseType: 'json',
@@ -124,14 +124,14 @@ export class ApiService {
     );
   }
 
-  getCustomerByID(cols: string = '*'): Observable<HttpResponse<any>> {
+  getCustomerByID(sid: string = ''): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams()
       .set('cols', 'first_name,last_name');
     const headersRequest = new HttpHeaders()
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
 
-    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customer/518208586000106003', bodyRequest, {
+    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customer/' + sid, bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
       responseType: 'json',

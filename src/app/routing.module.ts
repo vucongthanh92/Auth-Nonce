@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { WorkstationComponent } from './workstation/workstation.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { CustomerComponent } from './customer/customer.component';
 
 const routes: Routes = [
   {
@@ -13,6 +13,10 @@ const routes: Routes = [
   {
     path: 'workstation',
     component: WorkstationComponent
+  },
+  {
+    path: 'customer/:id',
+    component: CustomerComponent
   }
 ];
 
