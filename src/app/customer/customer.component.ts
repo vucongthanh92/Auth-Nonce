@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from '../api.service';
+import { ReplaceSource } from 'webpack-sources';
 
 @Component({
   selector: 'app-customer',
@@ -9,6 +10,7 @@ import { ApiService } from '../api.service';
 })
 export class CustomerComponent implements OnInit {
 
+  public profile: string;
   private sid: string;
 
   constructor(
@@ -30,9 +32,12 @@ export class CustomerComponent implements OnInit {
     this.apiService.getCustomerByID(sid)
       .subscribe(
         response => {
-          console.log(response);
+          response.body.map(
+            (result: any) => {
+              this.profile = result.first_name + ' ' + result.last_name;
+            }
+          );
         }
       );
   }
-
 }

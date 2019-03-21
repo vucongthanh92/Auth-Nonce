@@ -47,14 +47,14 @@ export class ApiService {
       .set('usr', username)
       .set('pwd', password);
     const headersRequest = new HttpHeaders()
-      .set('Auth-Nonce', localStorage.getItem('auth-nonce'))
-      .set('Auth-Nonce-Response', localStorage.getItem('auth-nonce-response'));
+      .set('auth-nonce', localStorage.getItem('auth-nonce'))
+      .set('auth-nonce-response', localStorage.getItem('auth-nonce-response'));
     const bodyRequest: any = null;
 
     const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/auth', bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
-      responseType: 'json',
+      responseType: 'json'
     });
 
     return this.httpClient.request<HttpResponse<any>>(requestOption).pipe(
@@ -77,15 +77,18 @@ export class ApiService {
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
 
+    console.log(headersRequest);
+
     const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/sit', bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
-      responseType: 'json'
+      responseType: 'json',
     });
 
     return this.httpClient.request<HttpResponse<any>>(requestOption).pipe(
       filter(responseAuthNonce => responseAuthNonce instanceof HttpResponse),
       map(response => {
+        console.log(response);
         const result = response as HttpResponse<any>;
         let bodyResponse: any = null;
         bodyResponse = result as any;
@@ -98,14 +101,14 @@ export class ApiService {
 
   getCustomer(cols: string = '*', pageNo: string = '1', pageSize: string = '10'): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams()
-      .set('page_no', pageNo)
       .set('cols', cols)
+      .set('page_no', pageNo)
       .set('page_size', pageSize);
     const headersRequest = new HttpHeaders()
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
 
-    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customers', bodyRequest, {
+    const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/customer', bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
       responseType: 'json',

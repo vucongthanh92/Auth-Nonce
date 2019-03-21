@@ -21,8 +21,8 @@ export class WorkstationComponent implements OnInit {
   ) {
     this.workstationName = 'scheduler_sbs1';
     this.cols = '*';
-    this.pageNo = '2';
-    this.pageSize = '15';
+    this.pageNo = '1';
+    this.pageSize = '10';
   }
 
   ngOnInit() {
@@ -53,7 +53,7 @@ export class WorkstationComponent implements OnInit {
         {
           queryParams: {
             sid: id
-          }, skipLocationChange: true
+          }
         });
     }
   }

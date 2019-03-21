@@ -10,9 +10,9 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  private username: string;
-  private password: string;
-  private error: string;
+  public username: string;
+  public password: string;
+  public error: string;
 
   constructor(
     private apiService: ApiService,
@@ -48,7 +48,7 @@ export class LoginComponent implements OnInit {
                 break;
               default:
                 this.error = 'Login failed';
-                console.log(error);
+                console.log(this.error);
                 break;
             }
           }
