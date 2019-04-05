@@ -12,11 +12,12 @@ import { CustomService } from './custom.service';
 export class ApiService {
 
   private apiUrl = environment.apiUrl;
+  private authSession: string;
 
   constructor(
     private httpClient: HttpClient,
     private customService: CustomService
-  ) { }
+  ) {}
 
   authNonceResponse(): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams();
@@ -42,13 +43,13 @@ export class ApiService {
     );
   }
 
-  loginResponse(username: string = '', password: string = ''): Observable<HttpResponse<any>> {
+  loginResponse(params: any = {}): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams()
-      .set('usr', username)
-      .set('pwd', password);
+      .set('usr', params.username)
+      .set('pwd', params.password);
     const headersRequest = new HttpHeaders()
-      .set('auth-nonce', localStorage.getItem('auth-nonce'))
-      .set('auth-nonce-response', localStorage.getItem('auth-nonce-response'));
+      .set('auth-nonce', params.authNonce)
+      .set('auth-nonce-response', params.authNonceReponse);
     const bodyRequest: any = null;
 
     const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/auth', bodyRequest, {
