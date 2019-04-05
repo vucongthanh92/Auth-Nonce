@@ -77,8 +77,6 @@ export class ApiService {
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
 
-    console.log(headersRequest);
-
     const requestOption = new HttpRequest<any>('GET', this.apiUrl + '/sit', bodyRequest, {
       headers: headersRequest,
       params: paramsRequest,
@@ -88,7 +86,6 @@ export class ApiService {
     return this.httpClient.request<HttpResponse<any>>(requestOption).pipe(
       filter(responseAuthNonce => responseAuthNonce instanceof HttpResponse),
       map(response => {
-        console.log(response);
         const result = response as HttpResponse<any>;
         let bodyResponse: any = null;
         bodyResponse = result as any;
@@ -129,7 +126,7 @@ export class ApiService {
 
   getCustomerByID(sid: string = ''): Observable<HttpResponse<any>> {
     const paramsRequest = new HttpParams()
-      .set('cols', 'first_name,last_name');
+      .set('cols', 'first_name,last_name,full_name');
     const headersRequest = new HttpHeaders()
       .set('auth-session', localStorage.getItem('auth-session'));
     const bodyRequest: any = null;
@@ -143,11 +140,12 @@ export class ApiService {
     return this.httpClient.request<HttpResponse<any>>(requestOption).pipe(
       filter(responseAuthNonce => responseAuthNonce instanceof HttpResponse),
       map(response => {
+        console.log(response);
         const result = response as HttpResponse<any>;
         let bodyResponse: any = null;
         bodyResponse = result as any;
         return result.clone({
-          body: bodyResponse.body,
+          body: bodyResponse.body.data,
         }) as HttpResponse<any>;
       })
     );
